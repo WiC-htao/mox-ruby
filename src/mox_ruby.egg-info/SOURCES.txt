@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+src/mox/__init__.py
+src/mox/ruby/__init__.py
+src/mox/ruby/const.py
+src/mox/ruby/datatype/__init__.py
+src/mox/ruby/datatype/globals.py
+src/mox/ruby/datatype/mana.py
+src/mox/ruby/datatype/misc.py
+src/mox_ruby.egg-info/PKG-INFO
+src/mox_ruby.egg-info/SOURCES.txt
+src/mox_ruby.egg-info/dependency_links.txt
+src/mox_ruby.egg-info/top_level.txt

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "mox-ruby"
+authors = [{ name = "WiC-htao", email = "1135524496@qq.com" }]
+description = "Research Infrastructures and Tools"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dynamic = ['version']
+[tool.setuptools.dynamic]
+version = { attr = "mox.ruby.__version__" }
+[project.urls]
+Homepage = "https://github.com/WiC-htao/mox-ruby"

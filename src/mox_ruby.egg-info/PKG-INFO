@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: mox-ruby
+Version: 0.0.1
+Summary: Research Infrastructures and Tools
+Author-email: WiC-htao <1135524496@qq.com>
+Project-URL: Homepage, https://github.com/WiC-htao/mox-ruby
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# mox-ruby
+Research Infrastructures and Tools
