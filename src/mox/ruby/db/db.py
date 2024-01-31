@@ -1,5 +1,5 @@
-from mox.ruby.misc import load_yaml
 from types import MappingProxyType
+from mox.ruby.misc import load_yaml
 
 
 class Db:
@@ -15,3 +15,6 @@ class Db:
     def structure(self):
         # TODO: parse schema to be more clear
         return MappingProxyType(self._structure)
+
+    def get_data(self):
+        pass

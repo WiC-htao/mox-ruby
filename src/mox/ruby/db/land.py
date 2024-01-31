@@ -1,6 +1,7 @@
-from mox.ruby.datatype import Mana
-from mox.ruby.misc import load_yaml
 from types import MappingProxyType
+from mox.ruby.datatype import Mana
+
+# from mox.ruby.misc import load_yaml
 
 
 class Land:
@@ -34,9 +35,5 @@ class Land:
         return self._manas[key].reshape(self.shape)
 
     def __setitem__(self, key, value):
-        assert isinstance(
-            value, Mana
-        ), f"Only Mana can be set in Land, got {type(value)}"
-        assert (
-            key not in self._manas
-        ), f"key<{key}> exists in land, set it in a normal explicit way for safety"
+        assert isinstance(value, Mana), f"Only Mana can be set in Land, got {type(value)}"
+        assert key not in self._manas, f"key<{key}> exists in land, set it in a normal explicit way for safety"
