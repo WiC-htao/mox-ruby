@@ -64,3 +64,4 @@ class Mana(np.ndarray):
                 del MANA_LIBRARY[old_expr]
             MANA_LIBRARY[output.expr] = output
         return results if ufunc.nout > 1 and len(results) > 1 else results[0]
+
