@@ -1,6 +1,8 @@
 from typing import Any, Literal
+
 import numpy as np
 from numpy._typing import NDArray
+
 from .globals import MANA_LIBRARY
 from .misc import get_default_variable_name
 
@@ -47,7 +49,6 @@ class Mana(np.ndarray):
                 if ufunc.nout == 1
                 else tuple(np.asarray(r).view(Mana) for r in results)
             )
-
         for i, output in enumerate(out):
             if not isinstance(output, Mana):
                 continue
@@ -64,4 +65,3 @@ class Mana(np.ndarray):
                 del MANA_LIBRARY[old_expr]
             MANA_LIBRARY[output.expr] = output
         return results if ufunc.nout > 1 and len(results) > 1 else results[0]
-

@@ -1,39 +1,6 @@
-from types import MappingProxyType
-from mox.ruby.datatype import Mana
-
-# from mox.ruby.misc import load_yaml
+from ._base import _Lands
 
 
-class Land:
-    def __init__(self, schema, manas):
-        # TODO: future deprecated by user-filepath and to independent os
-        self._schema = schema
-        self._manas = manas
-
-    @property
-    def schema(self):
-        # TODO: parse schema to be more clear
-        return MappingProxyType(self._schema)
-
-    @property
-    def dates(self):
+class Land(_Lands):
+    def get_mana(self):
         pass
-
-    @property
-    def times(self):
-        pass
-
-    @property
-    def securities(self):
-        pass
-
-    @property
-    def shape(self):
-        pass
-
-    def __getitem__(self, key):
-        return self._manas[key].reshape(self.shape)
-
-    def __setitem__(self, key, value):
-        assert isinstance(value, Mana), f"Only Mana can be set in Land, got {type(value)}"
-        assert key not in self._manas, f"key<{key}> exists in land, set it in a normal explicit way for safety"

@@ -1,6 +1,6 @@
 import re
-from .globals import MANA_LIBRARY, VARIABLE_COUNTER
 
+from .globals import MANA_LIBRARY, VARIABLE_COUNTER
 
 # def get_variable_no():
 #     variable_no_counter = {}

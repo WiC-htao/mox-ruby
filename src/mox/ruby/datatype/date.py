@@ -1,5 +1,4 @@
 import numpy as np
-from mox.ruby.const import date0
 
 
 class Date(np.datetime64):
@@ -26,10 +25,10 @@ class Date(np.datetime64):
         return self - self.astype("datetime64[M]") + 1
 
 
-class Time:
-    """
-    I think i can use a int64 to present a ns from 00:00:00,
-    and changed to np.timedelta64 when calculate with Date above.
-    But i think both of them need to be extended with in C-numpy to
-    keep a apparent str present in an array
-    """
+# class Time:
+#     """
+#     I think i can use a int64 to present a ns from 00:00:00,
+#     and changed to np.timedelta64 when calculate with Date above.
+#     But i think both of them need to be extended with in C-numpy to
+#     keep a apparent str present in an array
+#     """
