@@ -1,0 +1,2 @@
+DIRECT = "!direct"
+COMPACT = "!compact"

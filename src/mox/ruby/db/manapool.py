@@ -4,40 +4,38 @@ from typing import Dict
 
 import numpy as np
 
-from mox.ruby.datatype import Mana
-from mox.ruby.misc import make_tuple
+from ._enclosed import Mana, make_tuple
 
 
 @dataclass
-class ManaPoolSchema:
-    dates: np.ndarray
-    times: np.ndarray
-    securities: np.ndarray
-    manas: dict
+class ManaIndexer:
+    date: np.ndarray
+    time: np.ndarray
+    security: np.ndarray
 
 
 class ManaPool:
-    def __init__(self, schema: ManaPoolSchema, manas: Dict[str, Mana]):
+    def __init__(self, indexer: ManaIndexer, manas: Dict[str, Mana]):
         # TODO: future deprecated by user-filepath and to independent os
-        self._schema = schema
+        self._indexer = indexer
         self._manas = manas
 
     @property
-    def schema(self):
+    def indexer(self):
         # TODO: parse schema to be more clear
-        return MappingProxyType(self._schema)
+        return MappingProxyType(self._indexer)
 
     @property
     def dates(self):
-        return self._schema.dates.view()
+        return self._indexer.date.view()
 
     @property
     def times(self):
-        return self._schema.times.view()
+        return self._indexer.time.view()
 
     @property
     def securities(self):
-        return self._schema.securities.view()
+        return self._indexer.security.view()
 
     @property
     def manas(self):
@@ -45,8 +43,8 @@ class ManaPool:
 
     @property
     def shape(self):
-        tmp_var = self._schema
-        return len(tmp_var.dates), len(tmp_var.times), len(tmp_var.securities)
+        tmp_var = self._indexer
+        return len(tmp_var.date), len(tmp_var.time), len(tmp_var.security)
 
     def depict(self, mana_names=None):
         mana_names = make_tuple(mana_names, fill=self.manas)

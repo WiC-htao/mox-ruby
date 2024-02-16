@@ -29,9 +29,7 @@ def make_tuple(x, fill=None, split_array=True):
         return fill
     if isinstance(x, Iterable) and not isinstance(x, (str, VoidClass if split_array else np.ndarray)):
         return tuple(x)
-    return tuple(
-        x,
-    )
+    return (x,)
 
 
 class VoidClass:  # pylint: disable=too-few-public-methods

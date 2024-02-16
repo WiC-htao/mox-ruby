@@ -1,11 +1,11 @@
 import os
 import re
-from typing import Self
+from typing import List, Self, Union
 
 
 class Path(str):
     def __new__(cls, path: str, *, is_dir=None) -> None:
-        path = os.path.expanduser(path=path)
+        path = os.path.expanduser(path=path.strip())
         if is_dir is None:
             if os.path.isdir(path):
                 is_dir = True
@@ -23,9 +23,17 @@ class Path(str):
     def is_dir(self) -> bool:
         return self.endswith("/")
 
-    @property
+    def listdir(self) -> List[str]:
+        return os.listdir(self)
+
+    def exists(self) -> bool:
+        return os.path.exists(self)
+
     def concretize(self, **kwargs) -> Self:
-        path: str = re.sub(r"(?<!=%)%(?!%)[^%](?<!%)%(?!%)", lambda x: kwargs.get(x[1:-1], x), self).replace("%%", "%")
+        def _sub(x):
+            return kwargs.get(x.group()[1:-1], x.group())
+
+        path: str = re.sub(r"(?<!=%)%(?!%)[^%]*(?<!%)%(?!%)", _sub, self).replace("%%", "%")
         assert (
             "%" not in path
         ), r"SyntaxError of using %UserVar% in Path, unmatched %. Escape character of '%' is \"%%\""
@@ -33,17 +41,24 @@ class Path(str):
 
     def extend(self, *args) -> Self:
         if len(args) == 0:
-            return self
-        _other = args[0]
+            raise ValueError("nothing to extend")
         if os.path.exists(self):
             assert self.is_dir(), "only dir can be extended to a new path"
-            return self.__class__(self + _other, is_dir=True).extend(args[1:])
-        return self.__class__(self._standardize("/".join((args))))
+            if len(args) > 1:
+                return self.__class__(self + args[0], is_dir=True).extend(*args[1:])
+            return self.__class__(self + args[0], is_dir=None)
+        return self.__class__(self._standardize("/".join((self,) + args)))
 
     @classmethod
     def _explicit_dir(cls, x: str):
-        return re.sub(r"/*$", r"/$", x)
+        return re.sub(r"/*$", r"/", x)
 
     @classmethod
     def _standardize(cls, x: str):
         return re.sub(r"(?<!:)//", "/", x)
+
+    @classmethod
+    def aspath(cls, path: Union[str, Self], *, is_dir=None):
+        if isinstance(path, Path) and (path.is_dir == is_dir or is_dir is None):
+            return path
+        return cls(path, is_dir=is_dir)
