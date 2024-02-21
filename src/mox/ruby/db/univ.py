@@ -18,4 +18,6 @@ class Univ(_Lands):
         cache_info = self.schema["cache"][key]
         if cache_info["type"] == "security":
             return np.load(self._path.extend(cache_info["path"]))
+        if cache_info["type"] == "mana":
+            raise NotImplementedError
         raise NotImplementedError

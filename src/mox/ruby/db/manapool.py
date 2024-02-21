@@ -57,3 +57,6 @@ class ManaPool:
     def __setitem__(self, key, value):
         assert isinstance(value, Mana), f"Only Mana can be set in Land, got {type(value)}"
         assert key not in self._manas, f"key<{key}> exists in land, set it in a normal explicit way for safety"
+
+    def which(self):
+        pass

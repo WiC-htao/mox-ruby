@@ -1,3 +1,4 @@
+# pylint: disable=unused-import
 from mox.ruby.const import TIME_CONST
 from mox.ruby.datatype import Mana, Path, mana
 from mox.ruby.environ import CALENDARPATH, UNIVPATH
