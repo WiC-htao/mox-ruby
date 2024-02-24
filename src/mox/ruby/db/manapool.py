@@ -60,3 +60,9 @@ class ManaPool:
 
     def which(self):
         pass
+
+    def get_df(self):
+        pass
+
+    def get_field_df(self, field):
+        pass

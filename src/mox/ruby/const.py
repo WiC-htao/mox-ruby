@@ -12,4 +12,4 @@ symbol_priority_list = (("+", "-"), ("/", "*"))
 str_value_map = MappingProxyType({"nan": np.nan})
 
 
-TIME_CONST = {"ch_eod": "20:00:00"}
+TIME_CONST = {"ch_eod": "20:00:00",'ch_sod':"07:00:00"}

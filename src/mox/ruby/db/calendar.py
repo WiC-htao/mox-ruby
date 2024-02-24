@@ -1,11 +1,11 @@
 import numpy as np
 
-from ._base import _Lands
+from ._base import _Land
 from ._enclosed import CALENDARPATH, Path
 from .misc import find_land_from, lazy_date
 
 
-class Calendar(_Lands):
+class Calendar(_Land):
     def __init__(self, land_path) -> None:
         path = Path.aspath(land_path)
         if not path.exists():

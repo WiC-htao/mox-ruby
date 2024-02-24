@@ -16,16 +16,16 @@ def on_szse(security):
 
 
 def on_sse_main(security):
-    return bool(re.match(r"sse_60[135]\d{3}", security))
+    return bool(re.match(r"xshg_60[0135]\d{3}", security))
 
 
 def on_szse_main(security):
-    return bool(re.match(r"szse_00[02]\d{3}", security))
+    return bool(re.match(r"xshe_00[02]\d{3}", security))
 
 
 def on_szse_gem(security):
-    return bool(re.match(r"sse_688\d{3}", security))
+    return bool(re.match(r"xshg_688\d{3}", security))
 
 
 def on_sse_sti(security):
-    return bool(re.match(r"szse_300\d{3}", security))
+    return bool(re.match(r"xshe_300\d{3}", security))
