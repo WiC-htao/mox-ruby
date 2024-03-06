@@ -18,7 +18,8 @@ class _Land:
         self._schema: Dict = load_yaml(path=self._path.extend(".structure.yaml"))
         self._schema["name"] = re.search(r"/(?P<name>.*)/$", self._path).group("name")
         assert "asset" in self._schema
-        self._univ = self._calendar = None
+        self._univ = None
+        self._calendar = None
 
     @property
     def schema(self) -> MappingProxyType:

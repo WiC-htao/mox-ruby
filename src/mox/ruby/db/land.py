@@ -23,3 +23,4 @@ def dict_product(d):
     values = itertools.product(*d.values())
     for v in values:
         yield dict(zip(keys, v))
+

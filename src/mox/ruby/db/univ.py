@@ -1,12 +1,16 @@
 import numpy as np
 
 from ._base import _Land
-from ._enclosed import UNIVPATH, Path
+from ._enclosed import UNIVPATH, Path, make_tuple
 from .calendar import Calendar
 from .misc import find_land_from
 
 
 class Univ(_Land):
+    __schema__ = ("type", "asset", "univ", "filepath", "start_date")
+    __cache_schema__ = ('cache',)
+    __mana_schema__ = ('mana',)
+    
     def __init__(self, land_path) -> None:
         path = Path.aspath(land_path)
         if not path.exists():
@@ -17,7 +21,16 @@ class Univ(_Land):
         self._calendar = Calendar(self._schema["calendar"])
         self._univ = self
 
-    def get_ids(self, date):
+    def set_security(self, date, securities, modify=False, with_compress=True):
+        filepath = self._path.extend(self._schema["filepath"].concretize(date=date))
+        if not modify and filepath.exists():
+            raise FileExistsError
+        securities = make_tuple(securities)
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write("\n".join(securities))
+    def build_diff(self, dates=None, with_compressed=True)
+
+    def get_security(self, date):
         pass
 
     def get_id_union(self, dates=None, start=None, end=None):
