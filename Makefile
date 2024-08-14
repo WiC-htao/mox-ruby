@@ -3,7 +3,8 @@ _test:
 	@echo "success"
 
 format:
-	isort .
+	black .
+	isort . --profile=black
 
 lint:
 	pylint --rcfile=pylintrc.conf $$(git ls-files '*.py')

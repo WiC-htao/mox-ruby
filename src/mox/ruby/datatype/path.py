@@ -62,3 +62,7 @@ class Path(str):
         if isinstance(path, Path) and (path.is_dir == is_dir or is_dir is None):
             return path
         return cls(path, is_dir=is_dir)
+
+    @property
+    def var(self):
+        return re.findall(r"%[^%]*%", self)

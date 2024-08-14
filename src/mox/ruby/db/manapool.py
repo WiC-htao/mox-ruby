@@ -1,5 +1,4 @@
-from dataclasses import dataclass
-from types import MappingProxyType
+from dataclasses import dataclass, asdict
 from typing import Dict
 
 import numpy as np
@@ -7,7 +6,7 @@ import numpy as np
 from ._enclosed import Mana, make_tuple
 
 
-@dataclass
+@dataclass(slots=True)
 class ManaIndexer:
     date: np.ndarray
     time: np.ndarray
@@ -23,7 +22,7 @@ class ManaPool:
     @property
     def indexer(self):
         # TODO: parse schema to be more clear
-        return MappingProxyType(self._indexer)
+        return asdict(self._indexer)
 
     @property
     def dates(self):
@@ -43,8 +42,8 @@ class ManaPool:
 
     @property
     def shape(self):
-        tmp_var = self._indexer
-        return len(tmp_var.date), len(tmp_var.time), len(tmp_var.security)
+        _idx = self._indexer
+        return len(_idx.date), len(_idx.time), len(_idx.security)
 
     def depict(self, mana_names=None):
         mana_names = make_tuple(mana_names, fill=self.manas)
