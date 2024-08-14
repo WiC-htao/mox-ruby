@@ -18,7 +18,7 @@ def dump_yaml(dt, path):
 
 
 def overwrite_yaml(dt, path):
-    if os.path.exists(path):
+    if not os.path.exists(path):
         warnings.warn(f"File<{path}> not exists. Encourage using dump_yaml instead to be more safety")
     with open(path, "w", encoding="utf-8") as f:
         return yaml.safe_dump(dt, f)
