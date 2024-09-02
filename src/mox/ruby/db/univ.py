@@ -2,7 +2,7 @@ import numpy as np
 
 from ._base import _Land
 from ._enclosed import UNIVPATH, Path, make_tuple
-from .calendar import Calendar
+from ..calendar import Calendar
 from .misc import find_land_from
 
 

@@ -3,7 +3,7 @@ import itertools
 from mox.ruby.misc import make_tuple
 
 from ._base import _Land
-from .calendar import Calendar
+from ..calendar import Calendar
 from .univ import Univ
 
 

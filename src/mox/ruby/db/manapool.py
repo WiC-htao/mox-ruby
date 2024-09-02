@@ -10,7 +10,7 @@ from ._enclosed import Mana, make_tuple
 class ManaIndexer:
     date: np.ndarray
     time: np.ndarray
-    security: np.ndarray
+    ukey: np.ndarray
 
 
 class ManaPool:
@@ -33,8 +33,8 @@ class ManaPool:
         return self._indexer.time.view()
 
     @property
-    def securities(self):
-        return self._indexer.security.view()
+    def ukeys(self):
+        return self._indexer.ukey.view()
 
     @property
     def manas(self):
@@ -43,7 +43,7 @@ class ManaPool:
     @property
     def shape(self):
         _idx = self._indexer
-        return len(_idx.date), len(_idx.time), len(_idx.security)
+        return len(_idx.date), len(_idx.time), len(_idx.ukey)
 
     def depict(self, mana_names=None):
         mana_names = make_tuple(mana_names, fill=self.manas)
