@@ -2,11 +2,11 @@
 _test:
 	@echo "success"
 
-format:
+style:
 	black .
 	isort . --profile=black
 
 lint:
 	pylint --rcfile=pylintrc.conf $$(git ls-files '*.py')
 
-lint+: format lint
+lint+: style lint

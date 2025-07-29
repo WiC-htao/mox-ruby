@@ -1,3 +1,8 @@
 __version__ = "0.0.1"
 
-from .datatype import MANA_LIBRARY, Mana, get_default_variable_name, mana
+from .constants import RUNNING_TYPE, DATABASE
+
+if RUNNING_TYPE == "RSRH":
+    from ._rsrh_defaults import BIZDAYS
+
+    BIZDAYS = DATABASE.get_bizdays(BIZDAYS)

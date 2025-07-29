@@ -3,7 +3,7 @@
 import re
 
 
-def is_A_stock(security): #pylint: disable=invalid-name
+def is_A_stock(security):  # pylint: disable=invalid-name
     return on_sse(security) or on_szse(security)
 
 

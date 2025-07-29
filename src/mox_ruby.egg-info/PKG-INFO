@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: mox-ruby
 Version: 0.0.1
 Summary: Research Infrastructures and Tools
@@ -9,6 +9,18 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.11
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: PyYAML>=6.0.1
+Requires-Dist: GitPython>=3.1.41
+Requires-Dist: numpy>=1.26.3
+Dynamic: license-file
 
 # mox-ruby
 Research Infrastructures and Tools
+
+## DATABASE 
+```
+DATABASE
+    - .constant
+    - bizdays
+        - xxxxx.dts
+```

@@ -1,10 +1,11 @@
 import re
 from types import MappingProxyType
 from typing import Dict
-from mox.ruby.datatype import mana
 
 import numpy as np
 import yaml
+
+from mox.ruby.datatype import mana
 
 from ._enclosed import TIME_CONST, Mana, Path, load_yaml, make_tuple, overwrite_yaml
 from .const import DIRECT
@@ -66,11 +67,20 @@ class _Land:
         indexer = ManaIndexer(date, time, security)
         return ManaPool(indexer, manas)
 
-    def set_mana_cache(self, manapool, cache_key, date_cache_type="calendar_cache", time_cache_type="plain", **kwargs):
+    def set_mana_cache(
+        self,
+        manapool,
+        cache_key,
+        date_cache_type="calendar_cache",
+        time_cache_type="plain",
+        **kwargs,
+    ):
         cache_info = {}
         if date_cache_type == "calendar_cache":
 
-            self._calendar.set_cache(manapool.dates, kwargs.get("calendar_cache_key", cache_key))
+            self._calendar.set_cache(
+                manapool.dates, kwargs.get("calendar_cache_key", cache_key)
+            )
         else:
             raise NotImplementedError
         if time_cache_type == "plain":

@@ -17,7 +17,11 @@ from .globals import MANA_LIBRARY, VARIABLE_COUNTER
 def get_default_variable_name(prefix="_x"):
     seq = (
         max(
-            [int(x[len(prefix) :]) for x in MANA_LIBRARY.keys() if re.match(rf"{prefix}\d+$", x)]
+            [
+                int(x[len(prefix) :])
+                for x in MANA_LIBRARY.keys()
+                if re.match(rf"{prefix}\d+$", x)
+            ]
             + [VARIABLE_COUNTER.get(prefix, -1)]
         )
         + 1

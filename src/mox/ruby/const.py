@@ -1,3 +1,7 @@
+"""
+literal constants
+"""
+
 from types import MappingProxyType
 
 import numpy as np
@@ -12,3 +16,5 @@ symbol_priority_list = (("+", "-"), ("/", "*"))
 str_value_map = MappingProxyType({"nan": np.nan})
 
 TIME_CONST = MappingProxyType({"ch_eod": "22:00:00", "ch_sod": "07:00:00"})
+
+DATABASE_CONSTANTS_FILE = ".constants"

@@ -1,4 +1,4 @@
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from typing import Dict
 
 import numpy as np
@@ -48,14 +48,20 @@ class ManaPool:
     def depict(self, mana_names=None):
         mana_names = make_tuple(mana_names, fill=self.manas)
         for mn in mana_names:
-            print(f"{mn:<17}:{'/r' if len(mn)<20 else '/n'}{' '*20}{self._manas[mn].expr}")
+            print(
+                f"{mn:<17}:{'/r' if len(mn)<20 else '/n'}{' '*20}{self._manas[mn].expr}"
+            )
 
     def __getitem__(self, key):
         return self._manas[key].reshape(self.shape)
 
     def __setitem__(self, key, value):
-        assert isinstance(value, Mana), f"Only Mana can be set in Land, got {type(value)}"
-        assert key not in self._manas, f"key<{key}> exists in land, set it in a normal explicit way for safety"
+        assert isinstance(
+            value, Mana
+        ), f"Only Mana can be set in Land, got {type(value)}"
+        assert (
+            key not in self._manas
+        ), f"key<{key}> exists in land, set it in a normal explicit way for safety"
 
     def which(self):
         pass

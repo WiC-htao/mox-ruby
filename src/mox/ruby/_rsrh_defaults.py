@@ -1,0 +1,1 @@
+BIZDAY = ("CN", "Stock")
