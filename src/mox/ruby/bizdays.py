@@ -1,28 +1,11 @@
 from typing import Self
-import numpy as np
 
-from pathlib import Path
+import numpy as np
 
 
 class Bizdays:
-    # def __init__(self, land_path) -> None:
-    #     path = Path.aspath(land_path)
-    #     if not path.exists():
-    #         path = find_land_from(path, BIZCALENDARPATH)
-    #         if path is None:
-    #             raise ValueError(f"Can not find Calendar with name or path<{land_path}>")
-    #     super().__init__(path)
-
-    # def __init__(self, calendar_path=None) -> None:
-    #     calendar_path = calendar_path or CN_BIZDAY_CALENDAR_PATH
-    #     path = Path.aspath(calendar_path)
-    #     if path.endswith(".npy"):
-    #         raise NotImplementedError
-    #     with open(path, encoding="UTF8") as f:
-    #         self._calendar = cal = np.array(f.read().split("\n"), dtype=int)
-    #     assert (cal[1:] > cal[:-1]).all()
-    #     self._path = path
     def __init__(self, bizdays):
+        self.assert_monotonicity(bizdays, strict=True)
         self.bizdays = bizdays
 
     @staticmethod
@@ -33,13 +16,14 @@ class Bizdays:
 
     @staticmethod
     def assert_monotonicity(array, strict=False, descending=False):
-        order_relationship = (np.greater, np.greater_equal, np.less, np.less_equal)[2 * descending + strict]
+        order_relationship = (np.greater_equal, np.greater, np.less_equal, np.less)[
+            2 * descending + strict
+        ]
         assert order_relationship(array[1:], array[:-1]).all()
 
     @classmethod
     def from_dts(cls, path) -> Self:
         bizdays = cls.read_dts(path)
-        cls.assert_monotonicity(bizdays)
         return cls(bizdays)
 
     def next(self, date):
@@ -47,28 +31,20 @@ class Bizdays:
         return self.bizdays[idx]
 
     def prev(self, date):
-        pass
+        idx = np.searchsorted(self.bizdays, date, side="left")
+        if idx == 0:
+            raise ValueError(f"no days before <date>, {date} ")
+        return self.bizdays[idx - 1]
 
-    def range(self, st, ed=None):
-        # dates = np.load(self._path.join("dates.npy"))
-        cal = self._calendar
-        st = np.searchsorted(cal, int(st))
-        ed = None if ed is None else np.searchsorted(cal, int(ed))
-        return self._calendar[st:ed]
+    def range(self, sd=None, ed=None):
+        bizdays = self.bizdays
+        sd_idx = np.searchsorted(bizdays, int(sd), side="left")
+        ed_idx = None if ed is None else np.searchsorted(bizdays, int(ed), side="right")
+        return bizdays[sd_idx:ed_idx]
 
     def get_cache(self, key):
         path = self._path.extend("cache", f"{key}.npy")
         return np.load(path)
 
     def __contains__(self, d):
-        return int(d) in self._calendar
-
-    # def __init__(self, calendar_path=None) -> None:
-    #     calendar_path = calendar_path or CN_BIZDAY_CALENDAR_PATH
-    #     path = Path.aspath(calendar_path)
-    #     if path.endswith(".npy"):
-    #         raise NotImplementedError
-    #     with open(path, encoding="UTF8") as f:
-    #         self._calendar = cal = np.array(f.read().split("\n"), dtype=int)
-    #     assert (cal[1:] > cal[:-1]).all()
-    #     self._path = path
+        return int(d) in self.bizdays

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class Date(np.datetime64):
+class _NDate(np.datetime64):
     """Unable used for np.datetime64 can not be heirated, should change in cython"""
 
     # def __new__(cls, *args, **kwargs):
@@ -25,10 +25,11 @@ class Date(np.datetime64):
         return self - self.astype("datetime64[M]") + 1
 
 
-# class Time:
-#     """
-#     I think i can use a int64 to present a ns from 00:00:00,
-#     and changed to np.timedelta64 when calculate with Date above.
-#     But i think both of them need to be extended with in C-numpy to
-#     keep a apparent str present in an array
-#     """
+class _NTime:
+    #     """
+    #     I think i can use a int64 to present a ns from 00:00:00,
+    #     and changed to np.timedelta64 when calculate with Date above.
+    #     But i think both of them need to be extended with in C-numpy to
+    #     keep a apparent str present in an array
+    #     """
+    pass

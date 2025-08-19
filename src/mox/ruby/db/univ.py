@@ -2,7 +2,7 @@
 
 # import numpy as np
 
-# from mox.ruby.calendar import MoxCalendar
+# from mox.ruby.calendar import MoxBizdays
 
 # from ._base import _Land
 # from ._enclosed import make_tuple
@@ -21,7 +21,7 @@
 #             if path is None:
 #                 raise ValueError(f"Can not find Univ with name or path<{land_path}>")
 #         super().__init__(path)
-#         self._calendar = MoxCalendar(self._schema["calendar"])
+#         self._calendar = MoxBizdays(self._schema["calendar"])
 #         self._univ = self
 
 #     def set_security(self, date, securities, modify=False, with_compress=True):

@@ -2,7 +2,7 @@
 
 # from mox.ruby.misc import make_tuple
 
-# from ..calendar import Calendar
+# from ..calendar import Bizdays
 # from ._base import _Land
 # from .univ import Univ
 
@@ -11,7 +11,7 @@
 #     def __init__(self, land_path) -> None:
 #         super().__init__(land_path)
 #         self._univ = Univ(self.schema["univ"])
-#         self._calendar = Calendar(self.schema["calendar"])
+#         self._calendar = Bizdays(self.schema["calendar"])
 
 #     def get_mana(self):
 #         pass

@@ -10,3 +10,6 @@ lint:
 	pylint --rcfile=pylintrc.conf $$(git ls-files '*.py')
 
 lint+: style lint
+
+test:
+	pytest .
